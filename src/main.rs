@@ -25,7 +25,6 @@ fn main() {
 
 
     // Render
-    // print!("P3\n{image_width} {image_height}\n255\n");
     println!("P3");
     println!("{image_width} {image_height}");
     println!("255");
@@ -39,8 +38,6 @@ fn main() {
             let pixel_color = ray_color(r);
             libs::color::write_color(pixel_color);
 
-            // let ir = (255.999 * pixel_color.x()) as i32;
-            // println!("ir: {}", ir);
         }
     }
 
