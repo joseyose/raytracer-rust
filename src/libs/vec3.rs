@@ -42,6 +42,12 @@ impl Vec3 {
     pub fn length(&self) -> f64 {
         self.length_squared().sqrt()
     }
+
+    pub fn dot(u: libs::Vec3::Vec3, v: libs::Vec3::Vec3) -> f64 {
+        u.e[0] * v.e[0]
+            + u.e[1] * v.e[1]
+            + u.e[2] * v.e[2]
+    }
 }
 
 // operator overloads

@@ -1,6 +1,26 @@
 mod libs;
 
+fn hit_sphere(center: libs::Vec3::Vec3, radius: f64, r: libs::ray::ray) -> f64 {
+    let oc = r.origin() - center;
+    let a = libs::Vec3::Vec3::dot(r.direction(), r.direction());
+    let b = 2.0 * libs::Vec3::Vec3::dot(oc, r.direction());
+    let c = libs::Vec3::Vec3::dot(oc, oc) - radius * radius;
+    let discriminant = b * b - 4.0 * a * c;
+    if discriminant < 0.0 {
+        -1.0
+    } else {
+        (-b - discriminant.sqrt()) / (2.0 * a)
+    }
+}
+
 fn ray_color(r: libs::ray::ray) -> libs::Vec3::Vec3 {
+    let t = hit_sphere(libs::Vec3::Vec3::initialize(0.0, 0.0, -1.0), 0.5, r);
+
+    if (t > 0.0) {
+        let N = libs::Vec3::Vec3::unit_vector(r.at(t) - libs::Vec3::Vec3::initialize(0.0, 0.0, -1.0));
+        return 0.5 * libs::Vec3::Vec3::initialize(N.x() + 1.0, N.y() + 1.0, N.z() + 1.0);
+    }
+    // This continues if the ray does not hit the sphere
     let unit_direction = libs::Vec3::Vec3::unit_vector(r.direction());
     let t = 0.5 * (unit_direction.y() + 1.0);
     return (1.0 - t) * libs::Vec3::Vec3::initialize(1.0, 1.0, 1.0) + t * libs::Vec3::Vec3::initialize(0.5, 0.7, 1.0);
