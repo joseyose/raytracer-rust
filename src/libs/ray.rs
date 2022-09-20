@@ -33,8 +33,3 @@ impl ray {
         self.origin + t * self.direction
     }
 }
-
-
-pub fn hello() {
-    println!("Hello from the libs module!");
-}

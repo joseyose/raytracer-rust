@@ -37,9 +37,6 @@ impl Vec3 {
 
     pub fn unit_vector(v: libs::Vec3::Vec3) -> libs::Vec3::Vec3 {
         v / v.length()
-        // Vec3{e: [v[0] / v[0], self.e[1] / _rhs.e[1], self.e[2] / _rhs.e[2]]}
-        // println!("v: {:?}", v.length());
-        // Vec3::new()
     }
 
     pub fn length(&self) -> f64 {
