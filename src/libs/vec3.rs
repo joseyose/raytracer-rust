@@ -1,4 +1,5 @@
 use std::ops;
+use crate::libs;
 
 #[derive(Debug, Copy, Clone)]
 pub struct Vec3 {
@@ -34,11 +35,11 @@ impl Vec3 {
         self.e[0] * self.e[0] + self.e[1] * self.e[1] + self.e[2] * self.e[2]
     }
 
-    pub fn unit_vector(v: Vec3) -> Vec3 {
-        // v / v.length();
+    pub fn unit_vector(v: libs::Vec3::Vec3) -> libs::Vec3::Vec3 {
+        v / v.length()
         // Vec3{e: [v[0] / v[0], self.e[1] / _rhs.e[1], self.e[2] / _rhs.e[2]]}
-        println!("v: {:?}", v.length());
-        Vec3::new()
+        // println!("v: {:?}", v.length());
+        // Vec3::new()
     }
 
     pub fn length(&self) -> f64 {
@@ -100,6 +101,14 @@ type Output = Vec3;
 
     fn div(self, _rhs: Vec3) -> Vec3 {
         Vec3{e: [self.e[0] / _rhs.e[0], self.e[1] / _rhs.e[1], self.e[2] / _rhs.e[2]]}
+    }
+}
+
+impl ops::Div<f64> for Vec3 {
+    type Output = Vec3;
+
+    fn div(self, _rhs: f64) -> Vec3 {
+        Vec3{e: [self.e[0] / _rhs, self.e[1] / _rhs, self.e[2] / _rhs]}
     }
 }
 
